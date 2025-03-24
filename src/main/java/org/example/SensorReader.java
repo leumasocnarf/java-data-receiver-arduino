@@ -1,9 +1,15 @@
 package org.example;
 
+/**
+ * Interface que abstrai a formatação de dados de um Sensor no Arduino.
+ */
 public interface SensorReader {
     void formatData(String data);
 }
 
+/**
+ * Classe para formatação de dados de um sensor de temperatura.
+ */
 class TemperatureSensorReader implements SensorReader {
 
     @Override
@@ -16,6 +22,9 @@ class TemperatureSensorReader implements SensorReader {
     }
 }
 
+/**
+ * Classe para formatação de dados de um sensor de humidade.
+ */
 class HumiditySensorReader implements SensorReader {
 
     @Override
@@ -28,6 +37,9 @@ class HumiditySensorReader implements SensorReader {
     }
 }
 
+/**
+ * Classe para formatação de dados de um sensor de luz.
+ */
 class LightSensorReader implements SensorReader {
 
     @Override

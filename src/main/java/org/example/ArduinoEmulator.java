@@ -4,12 +4,20 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Random;
 
+/**
+ * Classe que representa a instância de um Arduino Emulado.
+ */
 public class ArduinoEmulator implements Arduino {
 
     public ArduinoEmulator(String port, int baudRate) {
         System.out.printf("Simulando conexão através da serial port %s com baud rate %d.%n", port, baudRate);
     }
 
+    /**
+     * Emula o envio de dados de um Arduino.
+     * @return um novo stream de dados a cada 2000 millis.
+     * @throws InterruptedException de Thread.sleep();
+     */
     @Override
     public InputStream sendDataStream() throws InterruptedException {
         Random random = new Random();

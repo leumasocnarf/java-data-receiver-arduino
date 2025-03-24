@@ -4,6 +4,9 @@ import com.fazecast.jSerialComm.SerialPort;
 
 import java.io.InputStream;
 
+/**
+ * Classe que representa a instância de um Arduino Real.
+ */
 public class ArduinoReal implements Arduino {
     private final String serialPortName;
     private final SerialPort serialPort;

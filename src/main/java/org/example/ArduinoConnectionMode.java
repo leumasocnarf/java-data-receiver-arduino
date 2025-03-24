@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Classe enum que representa modos de conexão com configuração de SerialPort e BaudRate
+ */
 public enum ArduinoConnectionMode {
     REAL {
         private String serialPort;
@@ -12,13 +15,13 @@ public enum ArduinoConnectionMode {
         }
 
         @Override
-        public ArduinoConnectionMode usingSerialPort(String serialPort) {
+        public ArduinoConnectionMode withSerialPort(String serialPort) {
             this.serialPort = serialPort;
             return this;
         }
 
         @Override
-        public ArduinoConnectionMode usingBaudRate(int baudRate) {
+        public ArduinoConnectionMode withBaudRate(int baudRate) {
             this.baudRate = baudRate;
             return this;
         }
@@ -34,19 +37,19 @@ public enum ArduinoConnectionMode {
         }
 
         @Override
-        public ArduinoConnectionMode usingSerialPort(String serialPort) {
+        public ArduinoConnectionMode withSerialPort(String serialPort) {
             this.serialPort = serialPort;
             return this;
         }
 
         @Override
-        public ArduinoConnectionMode usingBaudRate(int baudRate) {
+        public ArduinoConnectionMode withBaudRate(int baudRate) {
             this.baudRate = baudRate;
             return this;
         }
     };
 
     public abstract Arduino useArduino();
-    public abstract ArduinoConnectionMode usingSerialPort(String serialPort);
-    public abstract ArduinoConnectionMode usingBaudRate(int baudRate);
+    public abstract ArduinoConnectionMode withSerialPort(String serialPort);
+    public abstract ArduinoConnectionMode withBaudRate(int baudRate);
 }
