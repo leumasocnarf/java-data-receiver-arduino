@@ -6,15 +6,33 @@ import java.time.format.FormatStyle;
 import java.util.*;
 import java.util.stream.IntStream;
 
+/**
+ * Classe que representa um receptor de dados de um Arduino.
+ */
 public class ArduinoDataReceiver {
     private Arduino arduino;
-    private final List<SensorReader> sensors;
-    private final ArduinoConnectionMode connectionMode;
+    private final List<SensorReader> sensors = new ArrayList<>();
+    private ArduinoConnectionMode connectionMode;
     private boolean isConnected;
 
-    private ArduinoDataReceiver(Builder builder) {
-        this.sensors = builder.sensors;
-        this.connectionMode = builder.connectionMode;
+    /**
+     * Define um ArduinoConnectionMode.
+     * @param connectionMode de ArduinoConnectionMode.
+     * @return this ArduinoDataReceiver.
+     */
+    public ArduinoDataReceiver usingConnectionMode(ArduinoConnectionMode connectionMode) {
+        this.connectionMode = connectionMode;
+        return this;
+    }
+
+    /**
+     * Adiciona um SensorReader ao sensors ArrayList.
+     * @param sensor de SensorReader.
+     * @return this ArduinoDataReceiver.
+     */
+    public ArduinoDataReceiver withSensorReader(SensorReader sensor) {
+        this.sensors.add(sensor);
+        return this;
     }
 
     public void connect() {
@@ -41,6 +59,10 @@ public class ArduinoDataReceiver {
         return isConnected;
     }
 
+    /**
+     * Recebe dados da conexão com o Arduino EMULATION ou REAL.
+     * @throws InterruptedException do InputStream de sendDataStream();
+     */
     public void fetchData() throws InterruptedException {
         if (isConnected) {
 
@@ -59,6 +81,10 @@ public class ArduinoDataReceiver {
         }
     }
 
+    /**
+     * Processa e formata os dados recebidos.
+     * @param scanner de Scanner para ler dados do Arduino.
+     */
     private void processData(Scanner scanner) {
 
         System.out.println("Em: " + LocalDateTime.now()
@@ -74,24 +100,5 @@ public class ArduinoDataReceiver {
         }
 
         System.out.println("----------------------");
-    }
-
-    public static class Builder {
-        private ArduinoConnectionMode connectionMode;
-        private final List<SensorReader> sensors = new ArrayList<>();
-
-        public Builder useConnectionMode(ArduinoConnectionMode connectionMode) {
-            this.connectionMode = connectionMode;
-            return this;
-        }
-
-        public Builder withSensorReader(SensorReader sensor) {
-            this.sensors.add(sensor);
-            return this;
-        }
-
-        public ArduinoDataReceiver build() {
-            return new ArduinoDataReceiver(this);
-        }
     }
 }
