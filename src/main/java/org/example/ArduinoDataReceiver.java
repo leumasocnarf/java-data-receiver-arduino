@@ -42,6 +42,11 @@ public class ArduinoDataReceiver {
         return this;
     }
 
+    /**
+     * Estabelece conexão com um Arduino através dos parâmetros definidos.
+     * @param serialPort porta de conexão com o Arduino.
+     * @param baudRate o baud rate usado pelo Arduino.
+     */
     public void connect(String serialPort, int baudRate) {
         isConnected = true;
 
