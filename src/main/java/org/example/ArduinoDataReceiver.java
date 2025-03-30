@@ -42,11 +42,11 @@ public class ArduinoDataReceiver {
         return this;
     }
 
-    public void connect() {
+    public void connect(String serialPort, int baudRate) {
         isConnected = true;
 
         switch (connectionMode) {
-            case EMULATION, REAL -> this.arduino = connectionMode.useArduino();
+            case EMULATION, REAL -> this.arduino = connectionMode.useArduino(serialPort, baudRate);
 
             default -> throw new IllegalStateException("Valor inesperado: " + connectionMode);
         }

@@ -4,80 +4,38 @@ package org.example;
  * Enum que representa os diferentes modos de conexão com o Arduino.
  * Ela suporta dois modos:
  * <ul>
- *   <li>{@link #REAL} - Conecta com um Arduino real via {@link String serialPort}.</li>
- *   <li>{@link #EMULATION} - Usa um emulador no lugar de um Arduino físico.</li>
+ *   <li>{@link #REAL} - Conecta com um Arduino real.</li>
+ *   <li>{@link #EMULATION} - Usa um emulador em código no lugar de um Arduino físico.</li>
  * </ul>
- * Cada modo permite a definição de um {@link String serialPort} e um {@link Integer baudRate}.
  */
 public enum ArduinoConnectionMode {
     /**
-     * Real connection mode, usado para conectar a um Arduino físico via serialPort.
+     * Real connection mode: usado para conectar a um Arduino físico.
      */
     REAL {
-        private String serialPort;
-        private int baudRate;
-
         @Override
-        public Arduino useArduino() {
+        public Arduino useArduino(String serialPort, int baudRate) {
             System.out.printf("Conexão modo: %s!%n", this);
-            return new ArduinoReal(this.serialPort, this.baudRate);
+            return new ArduinoReal(serialPort, baudRate);
         }
 
-        @Override
-        public ArduinoConnectionMode withSerialPort(String serialPort) {
-            this.serialPort = serialPort;
-            return this;
-        }
-
-        @Override
-        public ArduinoConnectionMode withBaudRate(int baudRate) {
-            this.baudRate = baudRate;
-            return this;
-        }
     },
     /**
-     * Emulation mode, usado para simular uma conexão com o Arduino.
+     * Emulation mode: usado para emular uma conexão com o Arduino.
      */
     EMULATION {
-        private String serialPort;
-        private int baudRate;
-
         @Override
-        public Arduino useArduino() {
+        public Arduino useArduino(String serialPort, int baudRate) {
             System.out.printf("Conexão modo: %s!%n", this);
-            return new ArduinoEmulator(this.serialPort, this.baudRate);
-        }
-
-        @Override
-        public ArduinoConnectionMode withSerialPort(String serialPort) {
-            this.serialPort = serialPort;
-            return this;
-        }
-
-        @Override
-        public ArduinoConnectionMode withBaudRate(int baudRate) {
-            this.baudRate = baudRate;
-            return this;
+            return new ArduinoEmulator(serialPort, baudRate);
         }
     };
 
     /**
      * Cria uma instância do Arduino dependendo do modo de conexão selecionado.
+     * @param serialPort porta de conexão com o Arduino.
+     * @param baudRate o baud rate usado pelo Arduino.
      * @return an {@link Arduino} instance.
      */
-    public abstract Arduino useArduino();
-
-    /**
-     * Define a serialPort para a conexão.
-     * @param serialPort o número da serialPort.
-     * @return o atual {@link ArduinoConnectionMode}
-     */
-    public abstract ArduinoConnectionMode withSerialPort(String serialPort);
-
-    /**
-     * Define a baudRate para a conexão.
-     * @param baudRate the baud rate to use.
-     * @return o atual {@link ArduinoConnectionMode}
-     */
-    public abstract ArduinoConnectionMode withBaudRate(int baudRate);
+    public abstract Arduino useArduino(String serialPort, int baudRate);
 }
