@@ -10,7 +10,7 @@ import java.util.Random;
 public class ArduinoEmulator implements Arduino {
 
     public ArduinoEmulator(String port, int baudRate) {
-        System.out.printf("Simulando conexão através da serial port %s com baud rate %d.%n", port, baudRate);
+        System.out.printf("Emulando conexão através da serial port %s com baud rate %d.%n", port, baudRate);
     }
 
     /**
@@ -37,6 +37,6 @@ public class ArduinoEmulator implements Arduino {
 
     @Override
     public void closePort() {
-        System.out.println("Terminando simulação...");
+        System.out.println("Terminando emulação...");
     }
 }
