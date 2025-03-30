@@ -23,7 +23,7 @@ class TemperatureSensorReader implements SensorReader {
 }
 
 /**
- * Classe para formatação de dados de um sensor de humidade.
+ * Classe para formatação de dados de um sensor de umidade.
  */
 class HumiditySensorReader implements SensorReader {
 
@@ -32,8 +32,8 @@ class HumiditySensorReader implements SensorReader {
         float humidity = Float.parseFloat(data);
 
         System.out.printf(humidity < 40.0 ?
-                "💧 Humidade : %.1f %% 🔴 %n" :
-                "💧 Humidade : %.1f %% 🟢 %n", humidity);
+                "💧 Umidade : %.1f %% 🔴 %n" :
+                "💧 Umidade : %.1f %% 🟢 %n", humidity);
     }
 }
 
