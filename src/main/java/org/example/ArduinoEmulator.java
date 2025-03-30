@@ -15,16 +15,16 @@ public class ArduinoEmulator implements Arduino {
 
     /**
      * Emula o envio de dados de um Arduino.
-     * @return um novo stream de dados a cada 2000 millis.
-     * @throws InterruptedException de Thread.sleep();
+     * @return Um novo stream de dados a cada 2000 millis.
+     * @throws InterruptedException Thread.sleep();
      */
     @Override
     public InputStream sendDataStream() throws InterruptedException {
         Random random = new Random();
 
         while (true) {
-            float temperature = 10 + random.nextFloat() * 25;  // Randomiza Temperatura entre 10 e 35°C
-            float humidity = 20 + random.nextFloat() * 60;  // Randomiza Humidade entre 20 e 80%
+            float temperature = 10 + random.nextFloat() * 25;  // Randomiza Temperatura entre 10 e 35 °C
+            float humidity = 20 + random.nextFloat() * 60;  // Randomiza umidade entre 20 e 80%
             int light = 200 + random.nextInt(800);  // Randomiza Luz entre 200 e 1000
 
             String data = temperature + " " + humidity + " " + light;

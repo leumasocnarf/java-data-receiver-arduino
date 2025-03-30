@@ -7,7 +7,14 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 /**
- * Classe que representa um receptor de dados de um Arduino.
+ * Classe responsável por receber dados de um Arduino.
+ * Ela tem as seguintes propriedades:
+ * <ul>
+ *     <li>{@link #arduino} - Instância de {@link Arduino} usada para a comunicação.</li>
+ *     <li>{@link #sensors} - Uma lista de {@link SensorReader} referentes aos sensores conectados no Arduino.</li>
+ *     <li>{@link #connectionMode} - Modo de conexão {@link ArduinoConnectionMode REAL} ou {@link ArduinoConnectionMode EMULATION} usado para comunicar com o Arduino.</li>
+ *     <li>{@link #isConnected} - Indica se o receptor está conectado ou não com o Arduino.</li>
+ * </ul>
  */
 public class ArduinoDataReceiver {
     private Arduino arduino;
@@ -17,7 +24,7 @@ public class ArduinoDataReceiver {
 
     /**
      * Define um ArduinoConnectionMode.
-     * @param connectionMode de ArduinoConnectionMode.
+     * @param connectionMode ArduinoConnectionMode.
      * @return this ArduinoDataReceiver.
      */
     public ArduinoDataReceiver usingConnectionMode(ArduinoConnectionMode connectionMode) {
@@ -27,7 +34,7 @@ public class ArduinoDataReceiver {
 
     /**
      * Adiciona um SensorReader ao sensors ArrayList.
-     * @param sensor de SensorReader.
+     * @param sensor SensorReader.
      * @return this ArduinoDataReceiver.
      */
     public ArduinoDataReceiver withSensorReader(SensorReader sensor) {
@@ -60,8 +67,8 @@ public class ArduinoDataReceiver {
     }
 
     /**
-     * Recebe dados da conexão com o Arduino EMULATION ou REAL.
-     * @throws InterruptedException do InputStream de sendDataStream();
+     * A partir de {@link ArduinoConnectionMode} recebe dados de um {@link ArduinoReal} ou {@link ArduinoEmulator}.
+     * @throws InterruptedException InputStream de sendDataStream();
      */
     public void fetchData() throws InterruptedException {
         if (isConnected) {
@@ -83,7 +90,7 @@ public class ArduinoDataReceiver {
 
     /**
      * Processa e formata os dados recebidos.
-     * @param scanner de Scanner para ler dados do Arduino.
+     * @param scanner Scanner para ler dados do Arduino.
      */
     private void processData(Scanner scanner) {
 

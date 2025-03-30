@@ -7,6 +7,15 @@ import java.io.InputStream;
  */
 public interface Arduino {
 
+    /**
+     * Recebe dados de um Arduino.
+     * @return InputStream
+     * @throws InterruptedException InputStream
+     */
     InputStream sendDataStream() throws InterruptedException;
+
+    /**
+     * Fecha a porta de conexão com o Arduino.
+     */
     void closePort();
 }

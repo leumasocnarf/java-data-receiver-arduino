@@ -2,10 +2,6 @@ package org.example;
 
 import static org.example.ArduinoConnectionMode.EMULATION;
 
-/**
- * Para uma conexão real com Arduino basta utilizar:
- * @import static org.example.ArduinoConnectionMode.REAL;
- */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         ArduinoDataReceiver receiver = new ArduinoDataReceiver()
