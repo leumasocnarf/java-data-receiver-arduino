@@ -34,11 +34,11 @@ public class ArduinoDataReceiver {
 
     /**
      * Adiciona um SensorReader ao sensors ArrayList.
-     * @param sensor SensorReader.
+     * @param sensorReaders SensorReader.
      * @return this ArduinoDataReceiver.
      */
-    public ArduinoDataReceiver withSensorReader(SensorReader sensor) {
-        this.sensors.add(sensor);
+    public ArduinoDataReceiver withSensorsReaders(SensorReader... sensorReaders) {
+        Collections.addAll(this.sensors, sensorReaders);
         return this;
     }
 
